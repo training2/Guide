@@ -7,24 +7,24 @@ import java.util.List;
  */
 public class Route {
 
-        private Address address;
-        private List<Address> neighborAddresses;
+        private Station station;
+        private List<Station> neighborStations;
         private List<Integer> distanceList;
 
-        public Address getAddress() {
-                return address;
+        public Station getStation() {
+                return station;
         }
 
-        public void setAddress(Address address) {
-                this.address = address;
+        public void setStation(Station station) {
+                this.station = station;
         }
 
-        public List<Address> getNeighborAddresses() {
-                return neighborAddresses;
+        public List<Station> getNeighborStations() {
+                return neighborStations;
         }
 
-        public void setNeighborAddresses(List<Address> neighborAddresses) {
-                this.neighborAddresses = neighborAddresses;
+        public void setNeighborStations(List<Station> neighborStations) {
+                this.neighborStations = neighborStations;
         }
 
         public List<Integer> getDistanceList() {
@@ -38,8 +38,8 @@ public class Route {
         @Override
         public String toString() {
                 return "Route: " +
-                        "address=" + address +
-                        ", neighbor Addresses=" + neighborAddresses +
+                        "station=" + station +
+                        ", neighbor Addresses=" + neighborStations +
                         ", distanceList=" + distanceList;
         }
 }

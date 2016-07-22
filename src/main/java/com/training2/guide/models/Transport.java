@@ -9,11 +9,11 @@ public class Transport {
     private int id;
     private String transportType;
 
-    private List<Address> addressList;
+    private List<Station> stationList;
 
 
     {
-        addressList=new ArrayList<Address>();
+        stationList =new ArrayList<Station>();
     }
 
     public int getId()
@@ -26,12 +26,12 @@ public class Transport {
         this.id = id;
     }
 
-    public List<Address> getAddressList() {
-        return addressList;
+    public List<Station> getStationList() {
+        return stationList;
     }
 
-    public void setAddressList(List<Address> addressList) {
-        this.addressList = addressList;
+    public void setStationList(List<Station> stationList) {
+        this.stationList = stationList;
     }
 
     public String getTransportType() {
@@ -46,7 +46,7 @@ public class Transport {
     public String toString() {
         return "Transport" +
                 " id=" + id +
-                ", addressList=" + addressList +
+                ", stationList=" + stationList +
                 '\n';
     }
 }

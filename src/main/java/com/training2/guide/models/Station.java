@@ -3,7 +3,8 @@ package com.training2.guide.models;
 /**
  * Created by Kirill on 19.07.2016.
  */
-public class Address {
+public class Station {
+
     private int id;
     private String city;
     private String street;
@@ -35,7 +36,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address:" +
+        return "Station:" +
                 "id=" + id +
                 ", city Id=" + city  +
                 ", street=" + street;

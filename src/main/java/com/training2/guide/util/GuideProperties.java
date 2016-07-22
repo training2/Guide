@@ -6,51 +6,20 @@ import java.util.Properties;
 
 public class GuideProperties {
 
-    static FileInputStream fis;
-    static Properties properties = new Properties();
+    private static FileInputStream fis;
+    private static Properties properties = new Properties();
 
-    public static String getURL(){
-        String URL="";
+    private static String PROPERTIES_FILE_NAME = "src/main/resources/com.training2.guide/config.properties";
+
+    public static String getParameter(String parameterName){
+        String parameter="";
         try {
-            fis=new FileInputStream("src/main/resources/com.training2.guide/config.properties");
+            fis=new FileInputStream(PROPERTIES_FILE_NAME);
             properties.load(fis);
-
-            URL = properties.getProperty("url");
-
-            return URL;
-
+            parameter = properties.getProperty(parameterName);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return URL;
-    }
-
-
-    public static String getUsername(){
-        String username="";
-        try {
-
-            fis=new FileInputStream("src/main/resources/com.training2.guide/config.properties");
-            properties.load(fis);
-            username = properties.getProperty("username");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return username;
-    }
-
-    public static String getPassword(){
-        String password="";
-        try {
-
-            fis=new FileInputStream("src/main/resources/com.training2.guide/config.properties");
-            properties.load(fis);
-            password = properties.getProperty("password");
-            fis.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return password;
+        return parameter;
     }
 }

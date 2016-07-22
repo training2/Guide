@@ -1,6 +1,6 @@
 package com.training2.guide.dao;
 
-import com.training2.guide.models.Address;
+import com.training2.guide.models.Station;
 import com.training2.guide.models.Transport;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,9 +17,9 @@ public class TransportDAO extends AbstractDao<Transport, Integer> {
     @Override
     public List<Transport> getListById(Integer addressId) {
         List<Transport> transportList = new ArrayList<>();
-        List<Address> addressList = new ArrayList<>();
+        List<Station> stationList = new ArrayList<>();
         Transport transport = new Transport();
-        Address address = new Address();
+        Station station = new Station();
         PreparedStatement preparedStatement = getPreparedStatement(GET_TRANSPORT_BY_ADDRESS_ID);
         try {
             preparedStatement.setInt(1, addressId);
@@ -32,16 +32,16 @@ public class TransportDAO extends AbstractDao<Transport, Integer> {
                 preparedStatement.setInt(1, transportId);
                 ResultSet addressResultSet = preparedStatement.executeQuery();
                 while(addressResultSet.next()) {
-                    address.setId(addressResultSet.getInt("id"));
-                    address.setCity(addressResultSet.getString("city"));
-                    address.setStreet(addressResultSet.getString("street"));
-                    addressList.add(address);
-                    address = new Address();
+                    station.setId(addressResultSet.getInt("id"));
+                    station.setCity(addressResultSet.getString("city"));
+                    station.setStreet(addressResultSet.getString("street"));
+                    stationList.add(station);
+                    station = new Station();
                 }
-                transport.setAddressList(addressList);
+                transport.setStationList(stationList);
                 transportList.add(transport);
                 transport = new Transport();
-                addressList = new ArrayList<>();
+                stationList = new ArrayList<>();
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,7 +1,8 @@
 package com.training2.guide.dao;
 
-import com.training2.guide.models.Address;
+import com.training2.guide.models.Station;
 import com.training2.guide.models.Route;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,21 +19,21 @@ public class RouteDAO extends AbstractDao<Route, Integer> {
     public Route getById(Integer addressId) {
         Route route = new Route();
         PreparedStatement preparedStatement = getPreparedStatement(GET_ALL_BY_ADDRESS_ID);
-        Address address = new AddressDAO().getById(addressId);
-        route.setAddress(address);
+        Station station = new AddressDAO().getById(addressId);
+        route.setStation(station);
 
-         List<Address> listNeighborAddresses = new ArrayList<>();
+         List<Station> listNeighborStations = new ArrayList<>();
          List<Integer> distanceList = new ArrayList<>();
         try {
             preparedStatement.setInt(1, addressId);
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
-                address=new AddressDAO().getById(result.getInt("to_address_id"));
-                listNeighborAddresses.add(address);
+                station =new AddressDAO().getById(result.getInt("to_address_id"));
+                listNeighborStations.add(station);
                 distanceList.add(result.getInt("distance"));
             }
             route.setDistanceList(distanceList);
-            route.setNeighborAddresses(listNeighborAddresses);
+            route.setNeighborStations(listNeighborStations);
 
             if (preparedStatement !=null) preparedStatement.close();
             if (result!=null) result.close();

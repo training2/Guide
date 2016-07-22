@@ -28,7 +28,7 @@ public class DAOFactory {
 
 
             //Создаём соединение
-            connection = DriverManager.getConnection(getURL(), getUsername(), getPassword());
+            connection = DriverManager.getConnection(getParameter("url"), getParameter("username"), getParameter("password"));
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

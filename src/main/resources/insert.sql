@@ -5,27 +5,27 @@ INSERT IGNORE INTO transport  VALUES (4, 'tram');
 INSERT IGNORE INTO transport  VALUES (5, 'taxi');
 
 
-INSERT IGNORE INTO address (city, street) VALUES ('Minsk', 'Yesenyna St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Minsk', 'Lenina St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Minsk', 'Sverdlova St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Minsk', 'Pushkina St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Minsk', 'Gebbelsa St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Minsk', 'Slobodskaya St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Minsk', 'Yesenyna St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Minsk', 'Lenina St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Minsk', 'Sverdlova St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Minsk', 'Pushkina St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Minsk', 'Gebbelsa St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Minsk', 'Slobodskaya St.');
 
-INSERT IGNORE INTO address (city, street) VALUES ('Gomel', 'Kizshevatova St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Gomel', 'Ozernaya St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Gomel', 'Cvetochnaya St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Gomel', 'Lazurnaya St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Gomel', '9 Maya St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Gomel', 'Pivnaya St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Gomel', 'Kizshevatova St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Gomel', 'Ozernaya St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Gomel', 'Cvetochnaya St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Gomel', 'Lazurnaya St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Gomel', '9 Maya St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Gomel', 'Pivnaya St.');
 
-INSERT IGNORE INTO address (city, street) VALUES ('Minsk', 'Tirazhnaya St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Minsk', 'Mayakovskogo St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Minsk', 'Mira St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Minsk', 'Tirazhnaya St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Minsk', 'Mayakovskogo St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Minsk', 'Mira St.');
 
-INSERT IGNORE INTO address (city, street) VALUES ('Gomel', 'Bogdanova St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Gomel', 'Dvorkina St.');
-INSERT IGNORE INTO address (city, street) VALUES ('Gomel', 'Krasnova St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Gomel', 'Bogdanova St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Gomel', 'Dvorkina St.');
+INSERT IGNORE INTO station (city, street) VALUES ('Gomel', 'Krasnova St.');
 
 
 

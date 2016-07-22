@@ -1,7 +1,7 @@
 package com.training2.guide.algorithm.guide;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.models.Address;
+import com.training2.guide.models.Station;
 import com.training2.guide.dao.AbstractDao;
 import com.training2.guide.dao.TransportDAO;
 import com.training2.guide.models.Transport;
@@ -38,9 +38,9 @@ public class GuideLogic {
             }
             List<Transport> transportList = dao.getListById(currentId);
             for(Transport transport: transportList) {
-                for(Address address: transport.getAddressList()) {
+                for(Station station : transport.getStationList()) {
                     boolean b = goesToNextStation(transport, nextId);
-                    if(b && address.getId() == getNodeById(currentId).getId()) {
+                    if(b && station.getId() == getNodeById(currentId).getId()) {
                         currentTransport = transport;
                         transportPath.add(currentTransport);
                         hasTransport = true;
@@ -63,8 +63,8 @@ public class GuideLogic {
 
     private boolean goesToNextStation(Transport transport, int currentId) {
         boolean goesToNext = false;
-        for(Address address: transport.getAddressList()) {
-            if(address.getId() == currentId) {
+        for(Station station : transport.getStationList()) {
+            if(station.getId() == currentId) {
                 goesToNext = true;
                 break;
             }
