@@ -22,14 +22,40 @@ public class GuideOutput implements IOutput {
 
     @Override
     public void print() {
-        Address address = null;
-        Transport transport = null;
-        for(int i = 0; i < addressList.size(); i++) {
+        Address address;
+        Transport transport;
+        if(transportList.isEmpty()) {
+            System.out.println("Get taxi");
+            return;
+        }
+        for(int i = 0; i < transportList.size(); i++) {
             address = addressList.get(i);
             transport = transportList.get(i);
-            System.out.println(address.getId() + " " + address.getCity() + " " + address.getStreet() + " " +
-            transport.getId() + " " + transport.getTransportType());
+            System.out.print("On " + address.getId() + " " + address.getCity() + " " + address.getStreet() + " ");
+            if(i != 0 && goesToNextStation(i)) {
+                System.out.print("continue on " + transport.getId() + " " + transport.getTransportType() + ", he goes to " + getNextAddress(i).getId() + " " +
+                        getNextAddress(i).getCity() + " " + getNextAddress(i).getStreet());
+                System.out.println();
+                continue;
+            }
+            System.out.println("station get " + transport.getId() + " " + transport.getTransportType() + ", he goes to " + getNextAddress(i).getId() + " " +
+                    getNextAddress(i).getCity() + " " + getNextAddress(i).getStreet());
         }
+        System.out.println("You have reached your destination");
+    }
+
+    private Address getNextAddress(int currentIndex) {
+        if(currentIndex + 1 < addressList.size()) {
+            return addressList.get(currentIndex + 1);
+        }
+        return addressList.get(currentIndex);
+    }
+
+    private boolean goesToNextStation(int currentIndex) {
+        if(transportList.get(currentIndex).getId() == transportList.get(currentIndex - 1).getId()) {
+            return true;
+        }
+        return false;
     }
 
     private List<Address> nodeToAddress(List<Node> nodeList) {

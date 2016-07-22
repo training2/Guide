@@ -11,8 +11,8 @@ import java.util.List;
 
 public class MainClass {
 
-    public static final int start = 3;
-    public static final int finish = 10;
+    public static final int start = 1;
+    public static final int finish = 12;
 
     public static void main(String[] args) {
 

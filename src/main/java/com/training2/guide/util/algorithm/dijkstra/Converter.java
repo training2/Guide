@@ -9,9 +9,6 @@ import java.util.List;
 
 public class Converter {
 
-    public Converter() {
-    }
-
     public static Node convertRouteToNode(Route route) {
         Node node = new Node();
         node.setId(route.getAddress().getId());

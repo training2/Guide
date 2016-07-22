@@ -41,7 +41,6 @@ public class DijkstraAlgorithm {
         while(true) {
 
             if(map.isEmpty()) {
-                System.out.println("Get taxi");
                 return new ArrayList<>();
             }
             entry = getMinKeyEntry();

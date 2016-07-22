@@ -27,16 +27,20 @@ public class GuideLogic {
         int i = 0;
         for(Node node: nodeList) {
             i++;
+            int nextId = 0;
             int currentId = node.getId();
-            if(currentTransport != null && goesToNextStation(currentTransport, currentId)) {
+            if(hasNextnode(i)) {
+                nextId = nodeList.get(i).getId();
+            }
+            if(currentTransport != null && goesToNextStation(currentTransport, nextId)) {
                 transportPath.add(currentTransport);
                 continue;
             }
             List<Transport> transportList = dao.getListById(currentId);
             for(Transport transport: transportList) {
                 for(Address address: transport.getAddressList()) {
-                    boolean b = goesToNextStation(transport, currentId);
-                    if(address.getId() == getNodeById(currentId).getId()) {
+                    boolean b = goesToNextStation(transport, nextId);
+                    if(b && address.getId() == getNodeById(currentId).getId()) {
                         currentTransport = transport;
                         transportPath.add(currentTransport);
                         hasTransport = true;
@@ -45,8 +49,16 @@ public class GuideLogic {
                 }
                 if(hasTransport) break;
             }
+            hasTransport = false;
         }
         return transportPath;
+    }
+
+    private boolean hasNextnode(int i) {
+        if(i < nodeList.size()) {
+            return true;
+        }
+        return false;
     }
 
     private boolean goesToNextStation(Transport transport, int currentId) {
