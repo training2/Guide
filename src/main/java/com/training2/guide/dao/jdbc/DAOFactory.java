@@ -1,4 +1,4 @@
-package com.training2.guide.jdbc;
+package com.training2.guide.dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

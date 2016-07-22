@@ -1,4 +1,4 @@
-package com.training2.guide.jdbc.dao;
+package com.training2.guide.dao;
 
 import com.training2.guide.models.Address;
 import com.training2.guide.models.Transport;

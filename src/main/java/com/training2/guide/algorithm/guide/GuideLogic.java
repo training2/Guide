@@ -2,8 +2,8 @@ package com.training2.guide.algorithm.guide;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
 import com.training2.guide.models.Address;
-import com.training2.guide.jdbc.dao.AbstractDao;
-import com.training2.guide.jdbc.dao.TransportDAO;
+import com.training2.guide.dao.AbstractDao;
+import com.training2.guide.dao.TransportDAO;
 import com.training2.guide.models.Transport;
 import java.util.ArrayList;
 import java.util.List;

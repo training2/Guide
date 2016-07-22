@@ -1,8 +1,8 @@
 package com.training2.guide.algorithm.dijkstra;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.jdbc.dao.AbstractDao;
-import com.training2.guide.jdbc.dao.RouteDAO;
+import com.training2.guide.dao.AbstractDao;
+import com.training2.guide.dao.RouteDAO;
 import com.training2.guide.models.Route;
 import com.training2.guide.util.MapUtils;
 import com.training2.guide.util.algorithm.dijkstra.Converter;

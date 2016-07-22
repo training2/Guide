@@ -1,6 +1,6 @@
-package com.training2.guide.jdbc.dao;
+package com.training2.guide.dao;
 
-import com.training2.guide.jdbc.DAOFactory;
+import com.training2.guide.dao.jdbc.DAOFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
