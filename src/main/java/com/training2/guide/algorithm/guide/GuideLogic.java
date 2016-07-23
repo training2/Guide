@@ -1,10 +1,11 @@
 package com.training2.guide.algorithm.guide;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.models.AbstractTransport;
-import com.training2.guide.models.Station;
 import com.training2.guide.dao.AbstractDao;
 import com.training2.guide.dao.TransportDAO;
+import com.training2.guide.exceptions.TransportNotFoundException;
+import com.training2.guide.models.AbstractTransport;
+import com.training2.guide.models.Station;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class GuideLogic {
         this.dao = new TransportDAO();
     }
 
-    public List<AbstractTransport> getLogic() {
+    public List<AbstractTransport> getLogic() throws TransportNotFoundException {
 
         boolean hasTransport = false;
         AbstractTransport currentAbstractTransport = null;
@@ -40,16 +41,19 @@ public class GuideLogic {
             List<AbstractTransport> abstractTransportList = dao.getListById(currentId);
             for(AbstractTransport abstractTransport : abstractTransportList) {
                 for(Station station : abstractTransport.getStationList()) {
-                    boolean b = goesToNextStation(abstractTransport, nextId);
-                    if(b && station.getId() == getNodeById(currentId).getId()) {
+                    if(goesToNextStation(abstractTransport, nextId) && station.getId() == getNodeById(currentId).getId()) {
                         currentAbstractTransport = abstractTransport;
                         abstractTransportPath.add(currentAbstractTransport);
                         hasTransport = true;
                         break;
                     }
                 }
-                if(hasTransport) break;
+                if(hasTransport)
+                    break;
             }
+            if(hasNextnode(i) && !hasTransport)
+                throw new TransportNotFoundException("Transports don`t go from station.id = " + currentId
+                        + " to station.id = " + nextId);
             hasTransport = false;
         }
         return abstractTransportPath;

@@ -2,6 +2,7 @@ package com.training2.guide.io.guide;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
 import com.training2.guide.algorithm.guide.GuideLogic;
+import com.training2.guide.exceptions.TransportNotFoundException;
 import com.training2.guide.io.IOutput;
 import com.training2.guide.io.guide.model.PathModel;
 import com.training2.guide.models.AbstractTransport;
@@ -14,7 +15,7 @@ public class GuideOutput implements IOutput {
     private PathModel pathModel;
     private GuideLogic logic;
 
-    public GuideOutput(List<Node> nodeList) {
+    public GuideOutput(List<Node> nodeList) throws TransportNotFoundException {
         this.logic = new GuideLogic(nodeList);
         this.pathModel = new PathModel(logic.getLogic(), nodeList);
     }
