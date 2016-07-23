@@ -2,11 +2,20 @@ package com.training2.guide.models;
 
 public class PassangerPath {
 
+    private int id;
     private Passanger passanger;
     private Station stationFrom;
     private Station stationTo;
 
     public PassangerPath() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Passanger getPassanger() {
