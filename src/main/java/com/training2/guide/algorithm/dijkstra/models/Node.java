@@ -5,8 +5,7 @@ import java.util.List;
 public class Node {
 
     private int id;
-    private List<Integer> objectList;
-    private List<Integer> weightLinkList;
+    private List<NeighborPoint> neighborPointList;
     private int weightObject;
     private int fromObject;
 
@@ -21,20 +20,12 @@ public class Node {
         this.id = id;
     }
 
-    public List<Integer> getObjectList() {
-        return objectList;
+    public List<NeighborPoint> getNeighborPointList() {
+        return neighborPointList;
     }
 
-    public void setObjectList(List<Integer> objectList) {
-        this.objectList = objectList;
-    }
-
-    public List<Integer> getWeightLinkList() {
-        return weightLinkList;
-    }
-
-    public void setWeightLinkList(List<Integer> weightLinkList) {
-        this.weightLinkList = weightLinkList;
+    public void setNeighborPointList(List<NeighborPoint> neighborPointList) {
+        this.neighborPointList = neighborPointList;
     }
 
     public int getWeightObject() {

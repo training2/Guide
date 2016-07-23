@@ -8,8 +8,10 @@ import java.util.List;
 public class Route {
 
         private Station station;
-        private List<Station> neighborStations;
-        private List<Integer> distanceList;
+        private List<NeighborStation> neighborStationList;
+
+        public Route() {
+        }
 
         public Station getStation() {
                 return station;
@@ -19,27 +21,11 @@ public class Route {
                 this.station = station;
         }
 
-        public List<Station> getNeighborStations() {
-                return neighborStations;
+        public List<NeighborStation> getNeighborStationList() {
+                return neighborStationList;
         }
 
-        public void setNeighborStations(List<Station> neighborStations) {
-                this.neighborStations = neighborStations;
-        }
-
-        public List<Integer> getDistanceList() {
-                return distanceList;
-        }
-
-        public void setDistanceList(List<Integer> distanceList) {
-                this.distanceList = distanceList;
-        }
-
-        @Override
-        public String toString() {
-                return "Route: " +
-                        "station=" + station +
-                        ", neighbor Addresses=" + neighborStations +
-                        ", distanceList=" + distanceList;
+        public void setNeighborStationList(List<NeighborStation> neighborStationList) {
+                this.neighborStationList = neighborStationList;
         }
 }

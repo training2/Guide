@@ -1,12 +1,12 @@
 package com.training2.guide.algorithm.dijkstra;
 
+import com.training2.guide.algorithm.dijkstra.models.NeighborPoint;
 import com.training2.guide.algorithm.dijkstra.models.Node;
 import com.training2.guide.dao.AbstractDao;
 import com.training2.guide.dao.RouteDAO;
 import com.training2.guide.models.Route;
 import com.training2.guide.util.MapUtils;
 import com.training2.guide.util.algorithm.dijkstra.Converter;
-
 import java.util.*;
 
 public class DijkstraAlgorithm {
@@ -52,16 +52,17 @@ public class DijkstraAlgorithm {
             }
 
             int pairsNumber = 0;
-            for (Integer index : currentNode.getObjectList()) {
+            for (NeighborPoint neighborPoint: currentNode.getNeighborPointList()) {
+                int index = neighborPoint.getObject();
                 if(!hasOldId(index)) {
                     if (!hasId(index)) nodeList.add(Converter.convertRouteToNode(dao.getById(index)));
-                    if ((currentNode.getWeightObject() + currentNode.getWeightLinkList().get(pairsNumber)) <
+                    if ((currentNode.getWeightObject() + neighborPoint.getWeightLink()/*currentNode.getWeightLinkList().get(pairsNumber)*/) <
                             getNodeByIdLocal(index).getWeightObject()) {
-                        getNodeByIdLocal(index).setWeightObject(currentNode.getWeightObject() + currentNode.getWeightLinkList()
-                                .get(pairsNumber));
+                        getNodeByIdLocal(index).setWeightObject(currentNode.getWeightObject() + neighborPoint.getWeightLink()/*currentNode.getWeightLinkList()
+                                .get(pairsNumber)*/);
                         getNodeByIdLocal(index).setFromObject(currentNode.getId());
-                        map.put(index, currentNode.getWeightObject() + currentNode.getWeightLinkList()
-                                .get(pairsNumber));
+                        map.put(index, currentNode.getWeightObject() + neighborPoint.getWeightLink()/*currentNode.getWeightLinkList()
+                                .get(pairsNumber)*/);
                     }
                 }
                     pairsNumber++;

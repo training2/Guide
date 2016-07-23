@@ -2,10 +2,8 @@ package com.training2.guide.main;
 
 import com.training2.guide.algorithm.dijkstra.DijkstraAlgorithm;
 import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.algorithm.guide.GuideLogic;
 import com.training2.guide.io.IOutput;
 import com.training2.guide.io.guide.GuideOutput;
-import com.training2.guide.models.Transport;
 
 import java.util.List;
 
@@ -20,10 +18,7 @@ public class MainClass {
 
         List<Node> nodeList = algorithm.algorithm();
 
-        GuideLogic guideLogic = new GuideLogic(nodeList);
-        List<Transport> transportList = guideLogic.getLogic();
-
-        IOutput output = new GuideOutput(transportList, nodeList);
+        IOutput output = new GuideOutput(nodeList);
         output.print();
     }
 }

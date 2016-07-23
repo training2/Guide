@@ -1,29 +1,30 @@
 package com.training2.guide.algorithm.guide;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
+import com.training2.guide.models.AbstractTransport;
 import com.training2.guide.models.Station;
 import com.training2.guide.dao.AbstractDao;
 import com.training2.guide.dao.TransportDAO;
-import com.training2.guide.models.Transport;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class GuideLogic {
 
     private List<Node> nodeList;
-    private List<Transport> transportPath;
-    private AbstractDao<Transport, Integer> dao;
+    private List<AbstractTransport> abstractTransportPath;
+    private AbstractDao<AbstractTransport, Integer> dao;
 
     public GuideLogic(List<Node> nodeList) {
         this.nodeList = nodeList;
-        this.transportPath = new ArrayList<>();
+        this.abstractTransportPath = new ArrayList<>();
         this.dao = new TransportDAO();
     }
 
-    public List<Transport> getLogic() {
+    public List<AbstractTransport> getLogic() {
 
         boolean hasTransport = false;
-        Transport currentTransport = null;
+        AbstractTransport currentAbstractTransport = null;
         int i = 0;
         for(Node node: nodeList) {
             i++;
@@ -32,17 +33,17 @@ public class GuideLogic {
             if(hasNextnode(i)) {
                 nextId = nodeList.get(i).getId();
             }
-            if(currentTransport != null && goesToNextStation(currentTransport, nextId)) {
-                transportPath.add(currentTransport);
+            if(currentAbstractTransport != null && goesToNextStation(currentAbstractTransport, nextId)) {
+                abstractTransportPath.add(currentAbstractTransport);
                 continue;
             }
-            List<Transport> transportList = dao.getListById(currentId);
-            for(Transport transport: transportList) {
-                for(Station station : transport.getStationList()) {
-                    boolean b = goesToNextStation(transport, nextId);
+            List<AbstractTransport> abstractTransportList = dao.getListById(currentId);
+            for(AbstractTransport abstractTransport : abstractTransportList) {
+                for(Station station : abstractTransport.getStationList()) {
+                    boolean b = goesToNextStation(abstractTransport, nextId);
                     if(b && station.getId() == getNodeById(currentId).getId()) {
-                        currentTransport = transport;
-                        transportPath.add(currentTransport);
+                        currentAbstractTransport = abstractTransport;
+                        abstractTransportPath.add(currentAbstractTransport);
                         hasTransport = true;
                         break;
                     }
@@ -51,7 +52,7 @@ public class GuideLogic {
             }
             hasTransport = false;
         }
-        return transportPath;
+        return abstractTransportPath;
     }
 
     private boolean hasNextnode(int i) {
@@ -61,9 +62,9 @@ public class GuideLogic {
         return false;
     }
 
-    private boolean goesToNextStation(Transport transport, int currentId) {
+    private boolean goesToNextStation(AbstractTransport abstractTransport, int currentId) {
         boolean goesToNext = false;
-        for(Station station : transport.getStationList()) {
+        for(Station station : abstractTransport.getStationList()) {
             if(station.getId() == currentId) {
                 goesToNext = true;
                 break;

@@ -6,7 +6,7 @@ package com.training2.guide.models;
 public class Station {
 
     private int id;
-    private String city;
+    private City city;
     private String street;
 
     public int getId() {
@@ -17,11 +17,11 @@ public class Station {
         this.id = id;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
