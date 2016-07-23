@@ -32,12 +32,12 @@ public class GuideOutput implements IOutput {
             abstractTransport = pathModel.getAbstractTransportList().get(i);
             System.out.print("On " + station.getId() + " " + station.getCity().getCityName() + ", " + station.getStreet() + " ");
             if(i != 0 && goesToNextStation(i)) {
-                System.out.print("continue on " + abstractTransport.getId() + ", he goes to " + getNextAddress(i).getId() + " " +
+                System.out.print("continue on " + abstractTransport.getId() + ", it goes to " + getNextAddress(i).getId() + " " +
                         getNextAddress(i).getCity().getCityName() + ", " + getNextAddress(i).getStreet());
                 System.out.println();
                 continue;
             }
-            System.out.println("station get " + abstractTransport.getId() + ", he goes to " + getNextAddress(i).getId() + " " +
+            System.out.println("station get " + abstractTransport.getId() + ", it goes to " + getNextAddress(i).getId() + " " +
                     getNextAddress(i).getCity().getCityName() + ", " + getNextAddress(i).getStreet());
         }
         System.out.println("You have reached your destination");

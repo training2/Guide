@@ -4,7 +4,6 @@ import com.training2.guide.algorithm.dijkstra.DijkstraAlgorithm;
 import com.training2.guide.algorithm.dijkstra.models.Node;
 import com.training2.guide.io.IOutput;
 import com.training2.guide.io.guide.GuideOutput;
-
 import java.util.List;
 
 public class MainClass {
@@ -14,9 +13,9 @@ public class MainClass {
 
     public static void main(String[] args) {
 
-        DijkstraAlgorithm algorithm = new DijkstraAlgorithm(start, finish);
+        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(start, finish);
 
-        List<Node> nodeList = algorithm.algorithm();
+        List<Node> nodeList = dijkstra.algorithm();
 
         IOutput output = new GuideOutput(nodeList);
         output.print();

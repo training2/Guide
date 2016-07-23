@@ -51,21 +51,17 @@ public class DijkstraAlgorithm {
                 break;
             }
 
-            int pairsNumber = 0;
             for (NeighborPoint neighborPoint: currentNode.getNeighborPointList()) {
                 int index = neighborPoint.getObject();
                 if(!hasOldId(index)) {
                     if (!hasId(index)) nodeList.add(Converter.convertRouteToNode(dao.getById(index)));
-                    if ((currentNode.getWeightObject() + neighborPoint.getWeightLink()/*currentNode.getWeightLinkList().get(pairsNumber)*/) <
+                    if ((currentNode.getWeightObject() + neighborPoint.getWeightLink()) <
                             getNodeByIdLocal(index).getWeightObject()) {
-                        getNodeByIdLocal(index).setWeightObject(currentNode.getWeightObject() + neighborPoint.getWeightLink()/*currentNode.getWeightLinkList()
-                                .get(pairsNumber)*/);
+                        getNodeByIdLocal(index).setWeightObject(currentNode.getWeightObject() + neighborPoint.getWeightLink());
                         getNodeByIdLocal(index).setFromObject(currentNode.getId());
-                        map.put(index, currentNode.getWeightObject() + neighborPoint.getWeightLink()/*currentNode.getWeightLinkList()
-                                .get(pairsNumber)*/);
+                        map.put(index, currentNode.getWeightObject() + neighborPoint.getWeightLink());
                     }
                 }
-                    pairsNumber++;
             }
             oldNodes.add(currentId);
             map.remove(currentId);
