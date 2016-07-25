@@ -1,3 +1,9 @@
+/**
+ * This class PassangerPath
+ * @author Kirill Bugrim on 20.07.2016.
+ * @version 1.1
+ */
+
 package com.training2.guide.models;
 
 public class PassangerPath {
@@ -8,14 +14,6 @@ public class PassangerPath {
     private Station stationTo;
 
     public PassangerPath() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Passanger getPassanger() {
@@ -40,5 +38,23 @@ public class PassangerPath {
 
     public void setStationTo(Station stationTo) {
         this.stationTo = stationTo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "PassangerPath{" +
+                "id=" + id +
+                ", passanger=" + passanger +
+                ", stationFrom=" + stationFrom +
+                ", stationTo=" + stationTo +
+                '}';
     }
 }

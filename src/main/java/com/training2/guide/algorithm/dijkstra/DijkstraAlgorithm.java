@@ -2,14 +2,22 @@ package com.training2.guide.algorithm.dijkstra;
 
 import com.training2.guide.algorithm.dijkstra.models.NeighborPoint;
 import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.dao.AbstractDao;
-import com.training2.guide.dao.RouteDAO;
+import com.training2.guide.dao.jdbc.AbstractDao;
+import com.training2.guide.dao.jdbc.RouteDAO;
 import com.training2.guide.models.Route;
 import com.training2.guide.util.MapUtils;
 import com.training2.guide.util.algorithm.dijkstra.Converter;
+import org.apache.log4j.Logger;
+
 import java.util.*;
 
+/**
+ * This class serves for use dijkstra algorithm
+ * @author rutkovba
+ */
 public class DijkstraAlgorithm {
+
+    private Logger LOG = Logger.getLogger(DijkstraAlgorithm.class);
 
     private List<Node> nodes;
     private int startIndex;
@@ -29,10 +37,14 @@ public class DijkstraAlgorithm {
         this.dao = new RouteDAO();
     }
 
+    /**
+     * This is algorithm
+     * @return list of nodes
+     */
     public List<Node> algorithm() {
 
         int currentId = startIndex;
-        Node n = Converter.convertRouteToNode(dao.getById(currentId));
+        Node n = Converter.convertRouteToNode(dao.getByStationId(currentId));
         nodeList.add(n);
         getNodeByIdLocal(currentId).setWeightObject(0);
 
@@ -41,6 +53,7 @@ public class DijkstraAlgorithm {
         while(true) {
 
             if(map.isEmpty()) {
+                LOG.debug("Not found connections for points");
                 return new ArrayList<>();
             }
             entry = getMinKeyEntry();
@@ -48,13 +61,14 @@ public class DijkstraAlgorithm {
             Node currentNode = getNodeByIdLocal(currentId);
 
             if (currentId == endIndex) {
+                LOG.debug("Algorithm end");
                 break;
             }
 
             for (NeighborPoint neighborPoint: currentNode.getNeighborPointList()) {
                 int index = neighborPoint.getObject();
                 if(!hasOldId(index)) {
-                    if (!hasId(index)) nodeList.add(Converter.convertRouteToNode(dao.getById(index)));
+                    if (!hasId(index)) nodeList.add(Converter.convertRouteToNode(dao.getByStationId(index)));
                     if ((currentNode.getWeightObject() + neighborPoint.getWeightLink()) <
                             getNodeByIdLocal(index).getWeightObject()) {
                         getNodeByIdLocal(index).setWeightObject(currentNode.getWeightObject() + neighborPoint.getWeightLink());
@@ -66,10 +80,15 @@ public class DijkstraAlgorithm {
             oldNodes.add(currentId);
             map.remove(currentId);
         }
-        nodeList = getPath(nodeList);
+        nodeList = getPath();
         return nodeList;
     }
 
+    /**
+     * Get Node by id from local list, which was filled from DB
+     * @param id
+     * @return
+     */
     private Node getNodeByIdLocal(int id) {
         Node nod = null;
         for(Node node: nodeList) {
@@ -81,6 +100,11 @@ public class DijkstraAlgorithm {
         return nod;
     }
 
+    /**
+     * Check for old nodes
+     * @param id
+     * @return
+     */
     private boolean hasOldId(int id) {
         for(Integer oldId: oldNodes) {
             if(oldId == id) {
@@ -90,6 +114,11 @@ public class DijkstraAlgorithm {
         return false;
     }
 
+    /**
+     * Check for content local nodes by id
+     * @param id
+     * @return
+     */
     private boolean hasId(int id) {
         for(Node node: nodeList) {
             if(node.getId() == id) {
@@ -99,7 +128,11 @@ public class DijkstraAlgorithm {
         return false;
     }
 
-    private List<Node> getPath(List<Node> nodeList) {
+    /**
+     * Use for dijkstra algorithm for found a reverse path
+     * @return
+     */
+    private List<Node> getPath() {
         List<Node> pathList = new ArrayList<>();
         pathList.add(getNodeByIdLocal(endIndex));
         int fromIndex;
@@ -116,6 +149,10 @@ public class DijkstraAlgorithm {
         return (Map.Entry) MapUtils.sortByValues(map).entrySet().toArray()[0];
     }
 
+    /** Use for init map if all nodes are locals
+     * @deprecated
+     * @param nodeList
+     */
     @Deprecated
     private void initMap(List<Node> nodeList) {
         for(Node node: nodeList) {
@@ -130,109 +167,4 @@ public class DijkstraAlgorithm {
     public void setNodes(List<Node> nodes) {
         this.nodes = nodes;
     }
-
-    /*public void initNodes() {
-        nodes = new ArrayList<Node>();
-        List<Integer> addressesList = new ArrayList<Integer>();
-        addressesList.add(2);
-        addressesList.add(3);
-        List<Integer> distancesList = new ArrayList<Integer>();
-        distancesList.add(8);
-        distancesList.add(2);
-        Node node = new Node();
-        node.setWeightObject(Integer.MAX_VALUE);
-        node.setFromObject(0);
-        node.setId(1);
-        node.setObjectList(addressesList);
-        node.setWeightLinkList(distancesList);
-        nodes.add(node);
-
-        node = new Node();
-        node.setId(2);
-        node.setWeightObject(Integer.MAX_VALUE);
-        node.setFromObject(0);
-        addressesList = new ArrayList<Integer>();
-        addressesList.add(1);
-        addressesList.add(3);
-        addressesList.add(4);
-        addressesList.add(5);
-        distancesList = new ArrayList<Integer>();
-        distancesList.add(8);
-        distancesList.add(15);
-        distancesList.add(5);
-        distancesList.add(1);
-        node.setObjectList(addressesList);
-        node.setWeightLinkList(distancesList);
-        nodes.add(node);
-
-        node = new Node();
-        node.setId(3);
-        node.setWeightObject(Integer.MAX_VALUE);
-        node.setFromObject(0);
-        addressesList = new ArrayList<Integer>();
-        addressesList.add(1);
-        addressesList.add(2);
-        addressesList.add(4);
-        addressesList.add(6);
-        distancesList = new ArrayList<Integer>();
-        distancesList.add(2);
-        distancesList.add(15);
-        distancesList.add(5);
-        distancesList.add(10);
-        node.setObjectList(addressesList);
-        node.setWeightLinkList(distancesList);
-        nodes.add(node);
-
-        node = new Node();
-        node.setId(4);
-        node.setWeightObject(Integer.MAX_VALUE);
-        node.setFromObject(0);
-        addressesList = new ArrayList<Integer>();
-        addressesList.add(2);
-        addressesList.add(3);
-        addressesList.add(5);
-        distancesList = new ArrayList<Integer>();
-        distancesList.add(5);
-        distancesList.add(5);
-        distancesList.add(2);
-        node.setObjectList(addressesList);
-        node.setWeightLinkList(distancesList);
-        nodes.add(node);
-
-        node = new Node();
-        node.setId(5);
-        node.setWeightObject(Integer.MAX_VALUE);
-        node.setFromObject(0);
-        addressesList = new ArrayList<Integer>();
-        addressesList.add(2);
-        addressesList.add(4);
-        distancesList = new ArrayList<Integer>();
-        distancesList.add(1);
-        distancesList.add(2);
-        node.setObjectList(addressesList);
-        node.setWeightLinkList(distancesList);
-        nodes.add(node);
-
-        node = new Node();
-        node.setId(6);
-        node.setWeightObject(Integer.MAX_VALUE);
-        node.setFromObject(0);
-        addressesList = new ArrayList<Integer>();
-        addressesList.add(3);
-        distancesList = new ArrayList<Integer>();
-        distancesList.add(10);
-        node.setObjectList(addressesList);
-        node.setWeightLinkList(distancesList);
-        nodes.add(node);
-
-        node = new Node();
-        node.setId(7);
-        node.setWeightObject(Integer.MAX_VALUE);
-        node.setFromObject(0);
-        addressesList = new ArrayList<Integer>();
-        distancesList = new ArrayList<Integer>();
-        node.setObjectList(addressesList);
-        node.setWeightLinkList(distancesList);
-        nodes.add(node);
-    }*/
 }

@@ -8,6 +8,10 @@ import com.training2.guide.models.Route;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class use to convert some models to algorithm-models
+ * @author rutkovba
+ */
 public class Converter {
 
     public static Node convertRouteToNode(Route route) {

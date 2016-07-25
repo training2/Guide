@@ -1,6 +1,9 @@
+/**
+ * This class abstract of Transport
+ * @author Kirill Bugrim on 20.07.2016.
+ * @version 1.1
+ */
 package com.training2.guide.models;
-
-
 import java.util.List;
 
 public abstract class AbstractTransport {

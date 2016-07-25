@@ -4,6 +4,10 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * This class reverse sort fields of Map collection
+ * @author rutkovba
+ */
 public class MapUtils {
 
     public static <K, V extends Comparable<V>> Map<K, V> sortByValues(final Map<K, V> map) {

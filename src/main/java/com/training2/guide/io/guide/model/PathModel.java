@@ -1,14 +1,18 @@
 package com.training2.guide.io.guide.model;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.dao.AbstractDao;
-import com.training2.guide.dao.StationDAO;
+import com.training2.guide.dao.jdbc.AbstractDao;
+import com.training2.guide.dao.jdbc.StationDAO;
 import com.training2.guide.models.AbstractTransport;
 import com.training2.guide.models.Station;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is a model for out the result of guide algorithm
+ * @author rutkovba
+ */
 public class PathModel {
 
     private AbstractDao<Station, Integer> dao;
@@ -24,7 +28,7 @@ public class PathModel {
         List<Station> stationList = new ArrayList<>();
         this.dao = new StationDAO();
         for(Node node: nodeList) {
-            stationList.add(dao.getById(node.getId()));
+            stationList.add(dao.getByStationId(node.getId()));
         }
         return stationList;
     }

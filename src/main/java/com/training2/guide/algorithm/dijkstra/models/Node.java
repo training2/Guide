@@ -2,6 +2,12 @@ package com.training2.guide.algorithm.dijkstra.models;
 
 import java.util.List;
 
+/**
+ * This class connect object and all his neighbor objects and have weights of links
+ * Have list of substructure NeighborPoint
+ * @author rutkovba
+ * @see NeighborPoint
+ */
 public class Node {
 
     private int id;

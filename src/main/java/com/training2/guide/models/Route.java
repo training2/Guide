@@ -1,10 +1,12 @@
-package com.training2.guide.models;
+/**
+ * This class Route
+ * @author Kirill Bugrim on 20.07.2016.
+ * @version 1.1
+ */
 
+package com.training2.guide.models;
 import java.util.List;
 
-/**
- * Created by Kirill on 20.07.2016.
- */
 public class Route {
 
         private Station station;

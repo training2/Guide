@@ -1,29 +1,19 @@
 package com.training2.guide.main;
 
-import com.training2.guide.algorithm.dijkstra.DijkstraAlgorithm;
-import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.exceptions.TransportNotFoundException;
-import com.training2.guide.io.IOutput;
-import com.training2.guide.io.guide.GuideOutput;
-import java.util.List;
+import com.training2.guide.algorithm.guide.OrderExecuter;
+import org.apache.log4j.PropertyConfigurator;
 
 public class MainClass {
 
-    public static final int start = 3;
-    public static final int finish = 10;
+    public static final String LOG_FILE_NAME = "src/main/resources/log4j.xml";
 
     public static void main(String[] args) {
 
-        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(start, finish);
+        PropertyConfigurator.configure(LOG_FILE_NAME);
 
-        List<Node> nodeList = dijkstra.algorithm();
+        //InitDB.init();
 
-        IOutput output = null;
-        try {
-            output = new GuideOutput(nodeList);
-        } catch (TransportNotFoundException e) {
-            e.printStackTrace();
-        }
-        output.print();
+        OrderExecuter executer = new OrderExecuter();
+        executer.executeAll();
     }
 }

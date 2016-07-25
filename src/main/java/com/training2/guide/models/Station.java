@@ -1,8 +1,10 @@
+/**
+ * This class Station
+ * @author Kirill Bugrim on 20.07.2016.
+ * @version 1.1
+ */
 package com.training2.guide.models;
 
-/**
- * Created by Kirill on 19.07.2016.
- */
 public class Station {
 
     private int id;

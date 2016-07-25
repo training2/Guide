@@ -1,3 +1,9 @@
+/**
+ * This class Passanger
+ * @author Kirill Bugrim on 20.07.2016.
+ * @version 1.1
+ */
+
 package com.training2.guide.models;
 
 public class Passanger {
@@ -40,5 +46,16 @@ public class Passanger {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Passanger{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

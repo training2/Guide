@@ -1,5 +1,10 @@
 package com.training2.guide.algorithm.dijkstra.models;
 
+/**
+ * This class connect object and neighbor object and have weight of link
+ * @author rutkovba
+ * @see Node
+ */
 public class NeighborPoint {
 
     private Integer point;
