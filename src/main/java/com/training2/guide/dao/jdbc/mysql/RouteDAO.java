@@ -4,7 +4,7 @@
  */
 
 package com.training2.guide.dao.jdbc.mysql;
-import com.training2.guide.dao.jdbc.IRouteDao;
+import com.training2.guide.dao.IRouteDao;
 import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import com.training2.guide.models.NeighborStation;
 import com.training2.guide.models.Station;

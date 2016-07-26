@@ -5,7 +5,7 @@
  */
 
 package com.training2.guide.dao.jdbc.mysql;
-import com.training2.guide.dao.jdbc.IPassangerDao;
+import com.training2.guide.dao.IPassangerDao;
 import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import com.training2.guide.models.Passanger;
 import org.apache.log4j.Logger;

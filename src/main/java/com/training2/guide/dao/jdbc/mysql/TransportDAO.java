@@ -3,7 +3,7 @@
  * @version 1.1
  */
 package com.training2.guide.dao.jdbc.mysql;
-import com.training2.guide.dao.jdbc.ITransportDao;
+import com.training2.guide.dao.ITransportDao;
 import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import com.training2.guide.models.*;
 import org.apache.log4j.Logger;

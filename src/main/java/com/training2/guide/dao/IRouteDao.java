@@ -1,8 +1,8 @@
-package com.training2.guide.dao.jdbc;
+package com.training2.guide.dao;
 
 import java.util.List;
 
-public interface ICityDao<E, K> {
+public interface IRouteDao<E, K> {
 
     public List<E> getAll();
     public E getById(int id);

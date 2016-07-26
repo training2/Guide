@@ -1,7 +1,7 @@
 package com.training2.guide.algorithm.guide;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.dao.jdbc.ITransportDao;
+import com.training2.guide.dao.ITransportDao;
 import com.training2.guide.dao.jdbc.mysql.TransportDAO;
 import com.training2.guide.exceptions.TransportNotFoundException;
 import com.training2.guide.models.AbstractTransport;

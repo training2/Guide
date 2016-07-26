@@ -1,7 +1,7 @@
 package com.training2.guide.io.guide.model;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.dao.jdbc.IStationDao;
+import com.training2.guide.dao.IStationDao;
 import com.training2.guide.dao.jdbc.mysql.StationDAO;
 import com.training2.guide.models.AbstractTransport;
 import com.training2.guide.models.Station;

@@ -5,7 +5,7 @@
 
 package com.training2.guide.dao.jdbc.mysql;
 
-import com.training2.guide.dao.jdbc.ICityDao;
+import com.training2.guide.dao.ICityDao;
 import com.training2.guide.models.City;
 import org.apache.log4j.Logger;
 import java.sql.PreparedStatement;

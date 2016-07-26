@@ -2,7 +2,7 @@ package com.training2.guide.algorithm.dijkstra;
 
 import com.training2.guide.algorithm.dijkstra.models.NeighborPoint;
 import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.dao.jdbc.IRouteDao;
+import com.training2.guide.dao.IRouteDao;
 import com.training2.guide.dao.jdbc.mysql.RouteDAO;
 import com.training2.guide.models.Route;
 import com.training2.guide.util.MapUtils;

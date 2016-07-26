@@ -4,7 +4,7 @@
  */
 
 package com.training2.guide.dao.jdbc.mysql;
-import com.training2.guide.dao.jdbc.IPassangerPathDao;
+import com.training2.guide.dao.IPassangerPathDao;
 import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import com.training2.guide.models.Passanger;
 import com.training2.guide.models.PassangerPath;
