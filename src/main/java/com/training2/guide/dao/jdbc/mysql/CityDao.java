@@ -3,16 +3,17 @@
  * version 1.1
  */
 
-package com.training2.guide.dao.jdbc;
+package com.training2.guide.dao.jdbc.mysql;
+
+import com.training2.guide.dao.jdbc.ICityDao;
 import com.training2.guide.models.City;
 import org.apache.log4j.Logger;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CityDao extends AbstractDao<City, Integer> {
+public class CityDao extends AbstractMySQLDao implements ICityDao<City, Integer> {
 
     private static final Logger LOG = Logger.getLogger(CityDao.class);
 
@@ -43,6 +44,7 @@ public class CityDao extends AbstractDao<City, Integer> {
                     LOG.error("SQLException", e);
                 }
             }
+            connectionClose();
         }
 
     }
@@ -70,6 +72,7 @@ public class CityDao extends AbstractDao<City, Integer> {
             } catch (SQLException e) {
                 LOG.error("SQLException", e);
             }
+            connectionClose();
         }
 
         return city;

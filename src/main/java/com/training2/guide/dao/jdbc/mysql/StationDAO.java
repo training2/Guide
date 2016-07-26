@@ -3,8 +3,9 @@
  * @version 1.1
  */
 
-package com.training2.guide.dao.jdbc;
-import com.training2.guide.dao.jdbc.utils.DAOFactory;
+package com.training2.guide.dao.jdbc.mysql;
+import com.training2.guide.dao.jdbc.IStationDao;
+import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import com.training2.guide.models.City;
 import com.training2.guide.models.Station;
 import org.apache.log4j.Logger;
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * Created by Kirill on 20.07.2016.
  */
-public class StationDAO extends AbstractDao<Station, Integer> {
+public class StationDAO extends AbstractMySQLDao<Station, Integer> implements IStationDao<Station, Integer> {
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
@@ -71,6 +72,7 @@ public class StationDAO extends AbstractDao<Station, Integer> {
                     LOG.error("SQLException", e);
                 }
             }
+            connectionClose();
 
         }
 
@@ -97,13 +99,9 @@ public class StationDAO extends AbstractDao<Station, Integer> {
         } catch (SQLException e) {
             LOG.error("SQLException", e);
         } finally {
+            connectionClose();
         }
         return station;
-    }
-
-    @Override
-    public List<Station> getListByStationId(Integer stationId) {
-        return null;
     }
 
     @Override

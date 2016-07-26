@@ -3,8 +3,9 @@
  * @version 1.1
  */
 
-package com.training2.guide.dao.jdbc;
-import com.training2.guide.dao.jdbc.utils.DAOFactory;
+package com.training2.guide.dao.jdbc.mysql;
+import com.training2.guide.dao.jdbc.IRouteDao;
+import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import com.training2.guide.models.NeighborStation;
 import com.training2.guide.models.Station;
 import com.training2.guide.models.Route;
@@ -16,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RouteDAO extends AbstractDao<Route, Integer> {
+public class RouteDAO extends AbstractMySQLDao implements IRouteDao<Route, Integer> {
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
@@ -48,6 +49,7 @@ public class RouteDAO extends AbstractDao<Route, Integer> {
                     LOG.error("SQLException", e);
                 }
             }
+            connectionClose();
         }
     }
 
@@ -76,6 +78,7 @@ public class RouteDAO extends AbstractDao<Route, Integer> {
         } catch (SQLException e) {
             LOG.error("SQLException", e);
         } finally {
+            connectionClose();
         }
         return route;
     }

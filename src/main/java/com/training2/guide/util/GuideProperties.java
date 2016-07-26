@@ -5,7 +5,7 @@
  */
 
 package com.training2.guide.util;
-import com.training2.guide.dao.jdbc.utils.DAOFactory;
+import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;

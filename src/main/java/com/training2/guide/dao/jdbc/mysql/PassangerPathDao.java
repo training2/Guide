@@ -3,8 +3,9 @@
  * @version 1.1
  */
 
-package com.training2.guide.dao.jdbc;
-import com.training2.guide.dao.jdbc.utils.DAOFactory;
+package com.training2.guide.dao.jdbc.mysql;
+import com.training2.guide.dao.jdbc.IPassangerPathDao;
+import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import com.training2.guide.models.Passanger;
 import com.training2.guide.models.PassangerPath;
 import com.training2.guide.models.Station;
@@ -16,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PassangerPathDao extends AbstractDao<PassangerPath, Integer> {
+public class PassangerPathDao extends AbstractMySQLDao implements IPassangerPathDao<PassangerPath, Integer> {
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
@@ -35,6 +36,7 @@ public class PassangerPathDao extends AbstractDao<PassangerPath, Integer> {
     private static final int[] NUMBER_OF_ROUTE ={10,15,23,50,45,1,2,3,4,5,1,10,20,30,40,50};
     private static final int[] ID_TRANSPORT ={1,1,1,1,1,2,2,2,2,2,3,4,4,4,4,4};
 
+    @Override
     public void createPath() {
         PreparedStatement preparedStatement = getPreparedStatement(INSERT_ROUTES);
         try {
@@ -55,9 +57,11 @@ public class PassangerPathDao extends AbstractDao<PassangerPath, Integer> {
                     LOG.error("SQLException", e);
                 }
             }
+            connectionClose();
         }
     }
 
+    @Override
     public void initTransportRoute() {
         PreparedStatement preparedStatement = getPreparedStatement(INSERT_ROUTE_TRANSPORT);
 
@@ -80,9 +84,11 @@ public class PassangerPathDao extends AbstractDao<PassangerPath, Integer> {
                     LOG.error("SQLException", e);
                 }
             }
+            connectionClose();
         }
     }
 
+    @Override
     public void createPath(PassangerPath passangerPath, StringBuilder text) {
 
         PreparedStatement preparedStatement = getPreparedStatement(INSERT_PATH);
@@ -104,19 +110,9 @@ public class PassangerPathDao extends AbstractDao<PassangerPath, Integer> {
                     LOG.error("SQLException", e);
                 }
             }
+            connectionClose();
 
         }
-    }
-
-    @Override
-    public PassangerPath getByStationId(Integer id)
-    {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public List<PassangerPath> getListByStationId(Integer stationId) {
-        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -151,6 +147,7 @@ public class PassangerPathDao extends AbstractDao<PassangerPath, Integer> {
             } catch (SQLException e) {
                 LOG.error("SQLException", e);
             }
+            connectionClose();
         }
         return count;
     }
@@ -190,6 +187,7 @@ public class PassangerPathDao extends AbstractDao<PassangerPath, Integer> {
         } catch (SQLException e) {
             LOG.error("SQLException", e);
         } finally {
+            connectionClose();
         }
 
         return passangerPath;

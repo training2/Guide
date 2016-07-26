@@ -1,8 +1,8 @@
 package com.training2.guide.io.guide.model;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.dao.jdbc.AbstractDao;
-import com.training2.guide.dao.jdbc.StationDAO;
+import com.training2.guide.dao.jdbc.IStationDao;
+import com.training2.guide.dao.jdbc.mysql.StationDAO;
 import com.training2.guide.models.AbstractTransport;
 import com.training2.guide.models.Station;
 
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class PathModel {
 
-    private AbstractDao<Station, Integer> dao;
+    private IStationDao<Station, Integer> dao;
     private List<AbstractTransport> abstractTransportList;
     private List<Station> stationList;
 
@@ -33,11 +33,11 @@ public class PathModel {
         return stationList;
     }
 
-    public AbstractDao<Station, Integer> getDao() {
+    public IStationDao<Station, Integer> getDao() {
         return dao;
     }
 
-    public void setDao(AbstractDao<Station, Integer> dao) {
+    public void setDao(IStationDao<Station, Integer> dao) {
         this.dao = dao;
     }
 

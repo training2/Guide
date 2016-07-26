@@ -2,8 +2,8 @@ package com.training2.guide.algorithm.dijkstra;
 
 import com.training2.guide.algorithm.dijkstra.models.NeighborPoint;
 import com.training2.guide.algorithm.dijkstra.models.Node;
-import com.training2.guide.dao.jdbc.AbstractDao;
-import com.training2.guide.dao.jdbc.RouteDAO;
+import com.training2.guide.dao.jdbc.IRouteDao;
+import com.training2.guide.dao.jdbc.mysql.RouteDAO;
 import com.training2.guide.models.Route;
 import com.training2.guide.util.MapUtils;
 import com.training2.guide.util.algorithm.dijkstra.Converter;
@@ -26,7 +26,7 @@ public class DijkstraAlgorithm {
     private Map.Entry entry;
     private List<Node> nodeList;
     private List<Integer> oldNodes;
-    private AbstractDao<Route, Integer> dao;
+    private IRouteDao<Route, Integer> dao;
 
     public DijkstraAlgorithm(int start, int end) {
         this.startIndex = start;

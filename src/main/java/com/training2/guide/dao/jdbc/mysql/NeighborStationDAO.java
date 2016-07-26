@@ -2,8 +2,9 @@
  * @author Kirill Bugrim on 20.07.2016.
  * @version 1.1
  */
-package com.training2.guide.dao.jdbc;
-import com.training2.guide.dao.jdbc.utils.DAOFactory;
+package com.training2.guide.dao.jdbc.mysql;
+import com.training2.guide.dao.jdbc.INeighborStationDao;
+import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import com.training2.guide.models.Station;
 import org.apache.log4j.Logger;
 
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-public class NeighborStationDAO extends AbstractDao<Station, Integer> {
+public class NeighborStationDAO extends AbstractMySQLDao implements INeighborStationDao<Station, Integer> {
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
@@ -64,6 +65,7 @@ public class NeighborStationDAO extends AbstractDao<Station, Integer> {
                     LOG.error("SQLException", e);
                 }
             }
+            connectionClose();
 
         }
     }

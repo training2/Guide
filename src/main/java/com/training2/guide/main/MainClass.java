@@ -1,6 +1,7 @@
 package com.training2.guide.main;
 
 import com.training2.guide.algorithm.guide.OrderExecuter;
+import com.training2.guide.util.InitDB;
 import org.apache.log4j.PropertyConfigurator;
 
 public class MainClass {
@@ -11,7 +12,7 @@ public class MainClass {
 
         PropertyConfigurator.configure(LOG_FILE_NAME);
 
-        //InitDB.init();
+        InitDB.init();
 
         OrderExecuter executer = new OrderExecuter();
         executer.executeAll();

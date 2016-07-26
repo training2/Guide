@@ -5,7 +5,7 @@
  */
 
 package com.training2.guide.util;
-import com.training2.guide.dao.jdbc.*;
+import com.training2.guide.dao.jdbc.mysql.*;
 
 public class InitDB {
 

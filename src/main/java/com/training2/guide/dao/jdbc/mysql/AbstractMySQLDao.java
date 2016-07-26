@@ -1,31 +1,31 @@
-package com.training2.guide.dao.jdbc;
+package com.training2.guide.dao.jdbc.mysql;
 
-import com.training2.guide.dao.jdbc.utils.DAOFactory;
+import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Have some acts on DB
- * @param <E>
- * @param <K>
  * @author rutkovba
  */
-public abstract class AbstractDao<E, K> {
+public abstract class AbstractMySQLDao<E, K> {
 
-    private static final Logger LOG = Logger.getLogger(AbstractDao.class);
+    private static final Logger LOG = Logger.getLogger(AbstractMySQLDao.class);
 
-    public abstract List<E> getAll();
+    private Connection connection = null;
+
+    /*public abstract List<E> getAll();
     public abstract E getById(int id);
     public abstract int getCount();
     public abstract E getByStationId(K id);
     public abstract List<E> getListByStationId(K stationId);
-    public  abstract void create();
+    public  abstract void create();*/
 
     protected PreparedStatement getPreparedStatement(String query) {
-        Connection connection = DAOFactory.getConnection();
+        Connection connection = DAOFactory.getDataSource();
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(query);
@@ -33,5 +33,15 @@ public abstract class AbstractDao<E, K> {
             LOG.error("SQLException", e);
         }
         return preparedStatement;
+    }
+
+    public void connectionClose() {
+        /*if(connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }*/
     }
 }

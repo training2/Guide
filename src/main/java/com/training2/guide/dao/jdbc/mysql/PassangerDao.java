@@ -4,8 +4,9 @@
  * @version 1.1
  */
 
-package com.training2.guide.dao.jdbc;
-import com.training2.guide.dao.jdbc.utils.DAOFactory;
+package com.training2.guide.dao.jdbc.mysql;
+import com.training2.guide.dao.jdbc.IPassangerDao;
+import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import com.training2.guide.models.Passanger;
 import org.apache.log4j.Logger;
 
@@ -15,7 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PassangerDao extends AbstractDao<Passanger, Integer> {
+public class PassangerDao extends AbstractMySQLDao implements IPassangerDao<Passanger, Integer> {
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
@@ -64,6 +65,7 @@ public class PassangerDao extends AbstractDao<Passanger, Integer> {
                     LOG.error("SQLException", e);
                 }
             }
+            connectionClose();
 
         }
     }
@@ -100,6 +102,7 @@ public class PassangerDao extends AbstractDao<Passanger, Integer> {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            connectionClose();
         }
         return passanger;
     }

@@ -2,8 +2,9 @@
  * @author Kirill Bugrim on 20.07.2016.
  * @version 1.1
  */
-package com.training2.guide.dao.jdbc;
-import com.training2.guide.dao.jdbc.utils.DAOFactory;
+package com.training2.guide.dao.jdbc.mysql;
+import com.training2.guide.dao.jdbc.ITransportDao;
+import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
 import com.training2.guide.models.*;
 import org.apache.log4j.Logger;
 
@@ -16,7 +17,7 @@ import java.util.List;
 /**
  * Created by Kirill on 20.07.2016.
  */
-public class TransportDAO extends AbstractDao<AbstractTransport, Integer> {
+public class TransportDAO extends AbstractMySQLDao implements ITransportDao<AbstractTransport, Integer> {
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
@@ -55,6 +56,7 @@ public class TransportDAO extends AbstractDao<AbstractTransport, Integer> {
                     LOG.error("SQLException", e);
                 }
             }
+            connectionClose();
         }
     }
 
@@ -101,13 +103,9 @@ public class TransportDAO extends AbstractDao<AbstractTransport, Integer> {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            connectionClose();
         }
         return abstractTransportList;
-    }
-
-    @Override
-    public AbstractTransport getByStationId(Integer id) {
-        throw new UnsupportedOperationException();
     }
 
     private AbstractTransport getType(int id) {
@@ -127,7 +125,8 @@ public class TransportDAO extends AbstractDao<AbstractTransport, Integer> {
         return abstractTransport;
     }
 
-    public String getTypeTransport(Integer id) {
+    @Override
+    public String getTransportTypeById(Integer id) {
         String str="";
 
         PreparedStatement preparedStatement = getPreparedStatement(GET_TYPE_TRANSPORT);
@@ -147,6 +146,7 @@ public class TransportDAO extends AbstractDao<AbstractTransport, Integer> {
             } catch (SQLException e) {
                 LOG.error("SQLException", e);
             }
+            connectionClose();
 
         }
 
