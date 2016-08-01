@@ -46,7 +46,6 @@ public class NeighborStationDao implements INeighborStationDao<NeighborStation, 
     public List<NeighborStation> getListByStationId(Integer stationId) {
         Station currentStation = dao.getByStationId(stationId);
         SqlSession session  = SessionFactory.getSession();
-        //List<Integer> neighborStationIdList = session.selectList("NeighborStationMapping.getListIdByStationiId", currentStation);
         List<NeighborStation> neighborStationList = session.selectList("NeighborStationMapping.getListByStationId", currentStation);
         for(NeighborStation neighborStation: neighborStationList) {
             neighborStation.setStation(currentStation);
