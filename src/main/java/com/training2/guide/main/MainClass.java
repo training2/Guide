@@ -1,6 +1,7 @@
 package com.training2.guide.main;
 
 import com.training2.guide.algorithm.guide.OrderExecuter;
+import com.training2.guide.dao.DaoFactory;
 import org.apache.log4j.PropertyConfigurator;
 
 public class MainClass {
@@ -13,6 +14,7 @@ public class MainClass {
 
         //InitDB.init();
 
+        DaoFactory.initTypeOfDaoFactory(DaoFactory.MYBATIS);
         OrderExecuter executer = new OrderExecuter();
         executer.executeAll();
     }

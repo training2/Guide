@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="transportMapping">
+    <sql id="getList">
+        <![CDATA[
+          select trs.transport_id, tr.numberOfRoute, s.id as stationId, s.street, c.id as cityId, c.cityName
+           from transports t inner join transportsRoute tr on (t.id = tr.transport_id) inner join
+            transportRoute_station trs on (tr.id = trs.transport_id) inner join stations s on (trs.station_id = s.id)
+            inner join cities c on (s.city_id = c.id)
+        ]]>
+    </sql>
+
+    <select id="getBusListByStationId" resultMap="busMap">
+        <include refid="getList"/>
+        <![CDATA[
+          where (trs.station_id = #{id} and t.id = 1)
+        ]]>
+    </select>
+    <select id="getTrolleybusListByStationId" resultMap="trolleybusMap">
+        <include refid="getList"/>
+        <![CDATA[
+          where (trs.station_id = #{id} and t.id = 2)
+        ]]>
+    </select>
+    <select id="getTrainListByStationId" resultMap="trainMap">
+        <include refid="getList"/>
+        <![CDATA[
+          where (trs.station_id = #{id} and t.id = 3)
+        ]]>
+    </select>
+    <select id="getTramListByStationId" resultMap="tramMap">
+        <include refid="getList"/>
+        <![CDATA[
+          where (trs.station_id = #{id} and t.id = 4)
+        ]]>
+    </select>
+
+    <select id="getTransportTypeById" resultType="java.lang.String">
+        select t.typeTransport from transports t inner join transportsRoute tr on (t.id = tr.transport_id)
+         where(tr.id = #{id})
+    </select>
+
+    <select id="getStationListByTransportId" resultMap="stationList">
+        select s.id as stationId, s.street, c.id as cityId, c.cityName from stations s
+            inner join cities c on (s.city_id = c.id) inner join transportRoute_station trs on (trs.station_id = s.id)
+            where (trs.transport_id = #{id})
+    </select>
+
+    <resultMap id="busMap" type="Bus" extends="transportMap" autoMapping="false"/>
+    <resultMap id="trolleybusMap" type="Trolleybus" extends="transportMap" autoMapping="false"/>
+    <resultMap id="trainMap" type="Train" extends="transportMap" autoMapping="false"/>
+    <resultMap id="tramMap" type="Tram" extends="transportMap" autoMapping="false"/>
+
+    <resultMap id="transportMap" type="Transport" autoMapping="false">
+        <id property="id" column="transport_id"/>
+        <result property="transportNumber" column="numberOfRoute"/>
+    </resultMap>
+
+    <resultMap id="stationList" type="Station" autoMapping="false">
+        <id property="id" column="stationId"/>
+        <result property="street" column="street"/>
+        <association property="city" javaType="City">
+            <id property="id" column="cityId"/>
+            <result property="cityName" column="cityName"/>
+        </association>
+    </resultMap>
+</mapper>

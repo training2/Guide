@@ -20,7 +20,7 @@ public class PassangerDao extends AbstractMySQLDao implements IPassangerDao<Pass
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
-    private static final String GET_PASSENGER = "SELECT * FROM guide.passangers where id=?",
+    private static final String GET_PASSENGER = "SELECT * FROM passangers where id=?",
             INSERT_PASSANGER="insert ignore into passangers(namePassanger,gender,Age) values(?,?,?)";
     final static String NAME="namePassanger",GENDER="gender",AGE="age";
     final static String[] PASSANGER_NAME={"Ivan  Ivanov","Elena  Ivanova","Petr Petrov","Sidr  Sidorov","Olga  Karaseva","Vladimir  Ershov",
@@ -125,5 +125,10 @@ public class PassangerDao extends AbstractMySQLDao implements IPassangerDao<Pass
     @Override
     public Passanger getById(int id) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void create(Passanger entity) {
+
     }
 }

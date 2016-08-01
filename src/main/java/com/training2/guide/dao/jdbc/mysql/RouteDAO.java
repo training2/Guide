@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RouteDAO extends AbstractMySQLDao implements IRouteDao<Route, Integer> {
+public class RouteDao extends AbstractMySQLDao implements IRouteDao<Route, Integer> {
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
@@ -58,7 +58,7 @@ public class RouteDAO extends AbstractMySQLDao implements IRouteDao<Route, Integ
         Route route = new Route();
         NeighborStation neighborStation = new NeighborStation();
         PreparedStatement preparedStatement = getPreparedStatement(GET_ALL_BY_ADDRESS_ID);
-        Station station = new StationDAO().getByStationId(addressId);
+        Station station = new StationDao().getByStationId(addressId);
         route.setStation(station);
 
         List<NeighborStation> neighborStationList = new ArrayList<>();
@@ -66,10 +66,10 @@ public class RouteDAO extends AbstractMySQLDao implements IRouteDao<Route, Integ
             preparedStatement.setInt(1, addressId);
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
-                station =new StationDAO().getByStationId(result.getInt(STATION_FROM));
+                station =new StationDao().getByStationId(result.getInt(STATION_FROM));
                 neighborStation.setStation(station);
                 neighborStation.setDistance(result.getInt(DISTANCE));
-                neighborStation.setNeighborStation(new StationDAO().getByStationId(result.getInt(STATION_TO)));
+                neighborStation.setNeighborStation(new StationDao().getByStationId(result.getInt(STATION_TO)));
                 neighborStationList.add(neighborStation);
                 neighborStation = new NeighborStation();
             }
@@ -103,5 +103,10 @@ public class RouteDAO extends AbstractMySQLDao implements IRouteDao<Route, Integ
     @Override
     public Route getById(int id) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void create(Route entity) {
+
     }
 }

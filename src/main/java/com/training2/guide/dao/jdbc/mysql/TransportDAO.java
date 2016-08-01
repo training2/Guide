@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by Kirill on 20.07.2016.
  */
-public class TransportDAO extends AbstractMySQLDao implements ITransportDao<AbstractTransport, Integer> {
+public class TransportDao extends AbstractMySQLDao implements ITransportDao<AbstractTransport, Integer> {
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
@@ -166,6 +166,11 @@ public class TransportDAO extends AbstractMySQLDao implements ITransportDao<Abst
     @Override
     public AbstractTransport getById(int id) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void create(AbstractTransport entity) {
+
     }
 }
 

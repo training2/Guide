@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE configuration
+                PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<typeAliases>
+    <typeAlias type="com.training2.guide.models.City" alias="City"/>
+    <typeAlias type="com.training2.guide.models.Passanger" alias="Passanger"/>
+    <typeAlias type="com.training2.guide.models.PassangerPath" alias="PassangerPath"/>
+    <typeAlias type="com.training2.guide.models.Route" alias="Route"/>
+    <typeAlias type="com.training2.guide.models.Station" alias="Station"/>
+    <typeAlias type="com.training2.guide.models.AbstractTransport" alias="Transport"/>
+    <typeAlias type="com.training2.guide.models.Bus" alias="Bus"/>
+    <typeAlias type="com.training2.guide.models.Trolleybus" alias="Trolleybus"/>
+    <typeAlias type="com.training2.guide.models.Train" alias="Train"/>
+    <typeAlias type="com.training2.guide.models.Tram" alias="Tram"/>
+    <typeAlias type="com.training2.guide.models.NeighborStation" alias="NeighborStation"/>
+</typeAliases>
+<environments default="development">
+    <environment id="development">
+        <transactionManager type="JDBC"/>
+        <dataSource type="POOLED">
+            <property name="driver" value="com.mysql.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://localhost:3306/guide"/>
+            <property name="username" value="root"/>
+            <property name="password" value="root"/>
+        </dataSource>
+    </environment>
+</environments>
+<mappers>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/CityMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/PassangerMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/PassangerPathMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/RouteMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/StationMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/TransportMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/RouteMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/NeighborStationMapper.xml"/>
+</mappers>
+</configuration>

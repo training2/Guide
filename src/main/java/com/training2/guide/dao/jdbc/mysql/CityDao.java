@@ -17,7 +17,7 @@ public class CityDao extends AbstractMySQLDao implements ICityDao<City, Integer>
 
     private static final Logger LOG = Logger.getLogger(CityDao.class);
 
-    private static final String GET_CITY_BY__ID ="SELECT * FROM guide.cities where id=?",
+    private static final String GET_CITY_BY__ID ="SELECT * FROM com.training2.guide.dao.orm.mybatis.mysql.cities where id=?",
             INSERT_CITY="insert ignore into cities(cityName) values(?)", CITYNAME="cityName";
     final static String[] city={"Minsk","Vitebsk"};
 
@@ -96,5 +96,10 @@ public class CityDao extends AbstractMySQLDao implements ICityDao<City, Integer>
     @Override
     public City getById(int id) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void create(City entity) {
+
     }
 }

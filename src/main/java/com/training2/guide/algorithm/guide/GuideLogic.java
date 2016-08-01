@@ -1,8 +1,8 @@
 package com.training2.guide.algorithm.guide;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
+import com.training2.guide.dao.DaoFactory;
 import com.training2.guide.dao.ITransportDao;
-import com.training2.guide.dao.jdbc.mysql.TransportDAO;
 import com.training2.guide.exceptions.TransportNotFoundException;
 import com.training2.guide.models.AbstractTransport;
 import com.training2.guide.models.Station;
@@ -26,7 +26,7 @@ public class GuideLogic {
     public GuideLogic(List<Node> nodeList) {
         this.nodeList = nodeList;
         this.abstractTransportPath = new ArrayList<>();
-        this.dao = new TransportDAO();
+        this.dao = DaoFactory.getInstance().getTransportDao();
     }
 
     /**

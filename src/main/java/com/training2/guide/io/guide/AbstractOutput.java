@@ -2,12 +2,13 @@ package com.training2.guide.io.guide;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
 import com.training2.guide.algorithm.guide.GuideLogic;
+import com.training2.guide.dao.DaoFactory;
 import com.training2.guide.dao.ITransportDao;
-import com.training2.guide.dao.jdbc.mysql.TransportDAO;
 import com.training2.guide.exceptions.TransportNotFoundException;
 import com.training2.guide.io.guide.model.PathModel;
 import com.training2.guide.models.AbstractTransport;
 import com.training2.guide.models.Station;
+
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public abstract class AbstractOutput {
     public AbstractOutput(List<Node> nodeList) throws TransportNotFoundException {
         this.logic = new GuideLogic(nodeList);
         this.pathModel = new PathModel(logic.getLogic(), nodeList);
-        this.dao = new TransportDAO();
+        this.dao = DaoFactory.getInstance().getTransportDao();
     }
 
     /**

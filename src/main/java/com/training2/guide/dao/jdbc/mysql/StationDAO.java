@@ -19,13 +19,13 @@ import java.util.List;
 /**
  * Created by Kirill on 20.07.2016.
  */
-public class StationDAO extends AbstractMySQLDao<Station, Integer> implements IStationDao<Station, Integer> {
+public class StationDao extends AbstractMySQLDao<Station, Integer> implements IStationDao<Station, Integer> {
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
     private static final String GET_ALL_BY_ADDRESS_ID = "select s.id, s.street, c.id as cityId, c.cityName from stations s inner join cities c on (s.city_id = c.id) where (s.id = ?)";
     final static String ID="id",CITY_ID="cityId",CITY_NAME="cityName",STREET="street",
-            INSERT_STATION="INSERT INTO `guide`.`stations`(Street,city_id)  VALUES (?, ?)";
+            INSERT_STATION="INSERT INTO stations(Street,city_id)  VALUES (?, ?)";
     final static String[] STREETS={"Lenina str.","Mayakovskogo str.","Esenina str.","Nezavisimosti str.","Mogilevskaya str.","Kirova str.",
             "Frunze str.","Gagarina str.","Pobedy str.","Lazo str.","Chapaeva str.","Chkalova str.","Filimonova str","Kalinovskogo str.",
             "Nekrasova str.","Stroiteley str.","Lenina str.","Pushkina str."};
@@ -33,7 +33,7 @@ public class StationDAO extends AbstractMySQLDao<Station, Integer> implements IS
 
     final static List<Station> STATIONS=new ArrayList<>();
 
-    public StationDAO() {
+    public StationDao() {
     }
 
 
@@ -117,6 +117,11 @@ public class StationDAO extends AbstractMySQLDao<Station, Integer> implements IS
     @Override
     public Station getById(int id) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void create(Station entity) {
+
     }
 }
 

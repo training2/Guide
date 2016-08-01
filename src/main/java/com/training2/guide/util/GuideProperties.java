@@ -20,7 +20,7 @@ public class GuideProperties {
     private static FileInputStream fis;
     private static Properties properties = new Properties();
 
-    private static String PROPERTIES_FILE_NAME = "src/main/resources/com.training2.guide/config.properties";
+    private static String PROPERTIES_FILE_NAME = "src/main/resources/com/training2/guide/config.properties";
 
     public static String getParameter(String parameterName){
         String parameter="";

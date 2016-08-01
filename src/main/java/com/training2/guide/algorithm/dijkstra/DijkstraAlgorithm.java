@@ -2,8 +2,8 @@ package com.training2.guide.algorithm.dijkstra;
 
 import com.training2.guide.algorithm.dijkstra.models.NeighborPoint;
 import com.training2.guide.algorithm.dijkstra.models.Node;
+import com.training2.guide.dao.DaoFactory;
 import com.training2.guide.dao.IRouteDao;
-import com.training2.guide.dao.jdbc.mysql.RouteDAO;
 import com.training2.guide.models.Route;
 import com.training2.guide.util.MapUtils;
 import com.training2.guide.util.algorithm.dijkstra.Converter;
@@ -34,7 +34,7 @@ public class DijkstraAlgorithm {
         this.map = new TreeMap<>();
         this.nodeList = new ArrayList<>();
         this.oldNodes = new ArrayList<>();
-        this.dao = new RouteDAO();
+        this.dao = DaoFactory.getInstance().getRouteDao();
     }
 
     /**

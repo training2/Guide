@@ -21,13 +21,13 @@ public class PassangerPathDao extends AbstractMySQLDao implements IPassangerPath
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
-    private static final String INSERT_ROUTES="insert into `guide`.`passengers_station`(address_from, address_to, passenger_id) " +
+    private static final String INSERT_ROUTES="insert into passengers_station(address_from, address_to, passenger_id) " +
             "values(?,?,?)";
     private static final String INSERT_ROUTE_TRANSPORT ="insert into transportsRoute(numberOfRoute,transport_id) values(?,?)";
     private static final String INSERT_PATH = "insert  into orders(orderId,route) values(?,?)";
     private static final String SELECT_ALL = "SELECT * FROM passengers_station";
     private static final String COUNT = "SELECT  count(*) FROM passengers_station";
-    private static final String PASSANGER_PATH = "SELECT * FROM guide.passengers_station where id=?";
+    private static final String PASSANGER_PATH = "SELECT * FROM passengers_station where id=?";
     private static final String ID="id",ADDRESS_FROM="address_from",COUNTROW="count(*)",ADDRESS_TO="address_to",
             ID_PASSENGER="passenger_id";
     private static final int[] FROM={1,12,13,3,10,2,11,14,2,12};
@@ -176,9 +176,9 @@ public class PassangerPathDao extends AbstractMySQLDao implements IPassangerPath
 
             }
 
-            stationFrom=new StationDAO().getByStationId(addressFrom);
+            stationFrom=new StationDao().getByStationId(addressFrom);
             passangerPath.setStationFrom(stationFrom);
-            stationTo=new StationDAO().getByStationId(addressTo);
+            stationTo=new StationDao().getByStationId(addressTo);
             passangerPath.setStationTo(stationTo);
             passanger=new PassangerDao().getByStationId(idPassenger);
             passangerPath.setPassanger(passanger);
@@ -193,6 +193,10 @@ public class PassangerPathDao extends AbstractMySQLDao implements IPassangerPath
         return passangerPath;
     }
 
+    @Override
+    public void create(PassangerPath entity) {
+
+    }
 
 
 }

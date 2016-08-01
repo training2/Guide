@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NeighborStationMapping">
+    <select id="getListByStationId" resultType="NeighborStation" resultMap="listNeighborStationsMap">
+        select s.id as stationId, s.street, c. id as cityId, c.cityName, r.distance from stations s
+        inner join cities c on (s.city_id = c.id)
+        inner join route r on (s.id = r.station_to) where (r.station_from = #{id})
+    </select>
+
+    <!--<select id="getIdListByStationId" resultType="java.util.Integer">
+        select s.id as stationId, r.distance from stations s
+        inner join route r on (s.id = r.station_to) where (r.station_from = #{id})
+    </select>-->
+
+    <resultMap id="listNeighborStationsMap" type="NeighborStation" autoMapping="false">
+        <result property="distance" column="distance" javaType="java.lang.Integer"/>
+        <association property="neighborStation" javaType="Station">
+            <id property="id" column="stationId"/>
+            <result property="street" column="street"/>
+            <association property="city" javaType="City">
+                <id property="id" column="cityId"/>
+                <result property="cityName" column="cityName"/>
+            </association>
+        </association>
+    </resultMap>
+</mapper>

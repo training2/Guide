@@ -6,6 +6,7 @@ public interface ICityDao<E, K> {
 
     public List<E> getAll();
     public E getById(int id);
+    public void create(E entity);
     public int getCount();
     public E getByStationId(K id);
     public List<E> getListByStationId(K stationId);

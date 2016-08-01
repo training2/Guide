@@ -5,7 +5,7 @@
 package com.training2.guide.dao.jdbc.mysql;
 import com.training2.guide.dao.INeighborStationDao;
 import com.training2.guide.dao.jdbc.mysql.utils.DAOFactory;
-import com.training2.guide.models.Station;
+import com.training2.guide.models.NeighborStation;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-public class NeighborStationDAO extends AbstractMySQLDao implements INeighborStationDao<Station, Integer> {
+public class NeighborStationDao extends AbstractMySQLDao implements INeighborStationDao<NeighborStation, Integer> {
 
     private static final Logger LOG = Logger.getLogger(DAOFactory.class);
 
@@ -23,23 +23,33 @@ public class NeighborStationDAO extends AbstractMySQLDao implements INeighborSta
     private final static int[] DIST={8,9,3,4,6,6,2,2,11,8,3,270,9,4,11,270,3,8,6,3,8,2,6,5,11,2,5,9,4,9,4,4,4,3,4,3,8,4,8};
 
     @Override
-    public Station getByStationId(Integer id) {
+    public List<NeighborStation> getAll() {
         return null;
     }
 
     @Override
-    public List<Station> getListByStationId(Integer stationId) {
+    public NeighborStation getById(int id) {
         return null;
     }
 
     @Override
-    public List<Station> getAll() {
-        return null;
+    public void create(NeighborStation entity) {
+
     }
 
     @Override
     public int getCount() {
         return 0;
+    }
+
+    @Override
+    public NeighborStation getByStationId(Integer id) {
+        return null;
+    }
+
+    @Override
+    public List<NeighborStation> getListByStationId(Integer stationId) {
+        return null;
     }
 
     @Override
@@ -68,10 +78,5 @@ public class NeighborStationDAO extends AbstractMySQLDao implements INeighborSta
             connectionClose();
 
         }
-    }
-
-    @Override
-    public Station getById(int id) {
-        return null;
     }
 }

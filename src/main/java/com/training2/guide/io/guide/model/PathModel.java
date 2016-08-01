@@ -1,8 +1,8 @@
 package com.training2.guide.io.guide.model;
 
 import com.training2.guide.algorithm.dijkstra.models.Node;
+import com.training2.guide.dao.DaoFactory;
 import com.training2.guide.dao.IStationDao;
-import com.training2.guide.dao.jdbc.mysql.StationDAO;
 import com.training2.guide.models.AbstractTransport;
 import com.training2.guide.models.Station;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is a model for out the result of guide algorithm
+ * This class is a model for out the result of com.training2.guide.dao.orm.mybatis.mysql algorithm
  * @author rutkovba
  */
 public class PathModel {
@@ -26,7 +26,7 @@ public class PathModel {
 
     private List<Station> nodeToAddress(List<Node> nodeList) {
         List<Station> stationList = new ArrayList<>();
-        this.dao = new StationDAO();
+        this.dao = DaoFactory.getInstance().getStationDao();
         for(Node node: nodeList) {
             stationList.add(dao.getByStationId(node.getId()));
         }

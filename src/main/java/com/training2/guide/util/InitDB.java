@@ -12,11 +12,11 @@ public class InitDB {
     public static void init(){
         new CityDao().create();
         new PassangerDao().create();
-        new StationDAO().create();
+        new StationDao().create();
         new PassangerPathDao().createPath();
-        new TransportDAO().create();
+        new TransportDao().create();
         new PassangerPathDao().initTransportRoute();
-        new NeighborStationDAO().create();
-        new RouteDAO().create();
+        new NeighborStationDao().create();
+        new RouteDao().create();
     }
 }

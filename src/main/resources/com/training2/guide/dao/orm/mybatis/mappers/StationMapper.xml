@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stationMapping">
+    <select id="getById" resultMap="stationMap">
+        select s.id, s.street, c.id as cityId, c.cityName from stations s inner join cities c on (s.city_id = c.id)
+        where(s.id = #{id})
+    </select>
+    
+    <resultMap id="stationMap" type="Station" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="street" column="street"/>
+        <association property="city" javaType="City">
+            <id property="id" column="cityId"/>
+            <result property="cityName" column="cityName"/>
+        </association>
+    </resultMap>
+</mapper>

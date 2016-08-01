@@ -2,8 +2,8 @@ package com.training2.guide.algorithm.guide;
 
 import com.training2.guide.algorithm.dijkstra.DijkstraAlgorithm;
 import com.training2.guide.algorithm.dijkstra.models.Node;
+import com.training2.guide.dao.DaoFactory;
 import com.training2.guide.dao.IPassangerPathDao;
-import com.training2.guide.dao.jdbc.mysql.PassangerPathDao;
 import com.training2.guide.exceptions.TransportNotFoundException;
 import com.training2.guide.io.IOutput;
 import com.training2.guide.io.guide.PrintToConsole;
@@ -33,7 +33,7 @@ public class OrderExecuter {
         this.path = new PassangerPath();
         this.pathList = new ArrayList<>();
         this.count = 0;
-        this.dao = new PassangerPathDao();
+        this.dao = DaoFactory.getInstance().getPassangerPathDao();
     }
 
     public void execute(int id) {
@@ -65,7 +65,7 @@ public class OrderExecuter {
             output = new PrintToDB(path, nodeList);
             output.print();
         } catch (TransportNotFoundException e) {
-            e.printStackTrace();
+            LOG.error("TransportNotFoundException" ,e);
         }
         return nodeList;
     }

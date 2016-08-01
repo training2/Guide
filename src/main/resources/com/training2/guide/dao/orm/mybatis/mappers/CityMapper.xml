@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cityMapping">
+    <insert id="cityInsert" parameterType="City" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        insert ignore into cities(cityName) values (#{cityName})
+    </insert>
+
+    <select id="getAllCities" resultType="City" resultMap="cityMap">
+        select c.id, c.cityName from cities c
+    </select>
+
+    <select id="getCityById" resultType="City" resultMap="cityMap">
+        select c.id, c.cityName from cities c where (c.id = #{id})
+    </select>
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(c.id) from cities c
+    </select>
+
+    <select id="getByStationId" resultType="City" resultMap="cityMap">
+        select c.id as id, c.cityName from stations s inner join cities c on (s.city_id = c.id) where (s.id = #{id})
+    </select>
+
+    <resultMap id="cityMap" type="City" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="cityName" column="cityName"/>
+    </resultMap>
+</mapper>
