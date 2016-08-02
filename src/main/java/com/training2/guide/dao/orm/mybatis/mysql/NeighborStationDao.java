@@ -1,19 +1,14 @@
-package com.training2.guide.dao.orm.mybatis;
+package com.training2.guide.dao.orm.mybatis.mysql;
 
 import com.training2.guide.dao.INeighborStationDao;
-import com.training2.guide.dao.IStationDao;
 import com.training2.guide.models.NeighborStation;
-import com.training2.guide.models.Station;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
 public class NeighborStationDao implements INeighborStationDao<NeighborStation, Integer> {
 
-    private IStationDao<Station, Integer> dao;
-
     public NeighborStationDao() {
-        this.dao = new StationDao();
     }
 
 
@@ -44,12 +39,8 @@ public class NeighborStationDao implements INeighborStationDao<NeighborStation, 
 
     @Override
     public List<NeighborStation> getListByStationId(Integer stationId) {
-        Station currentStation = dao.getByStationId(stationId);
         SqlSession session  = SessionFactory.getSession();
-        List<NeighborStation> neighborStationList = session.selectList("NeighborStationMapping.getListByStationId", currentStation);
-        for(NeighborStation neighborStation: neighborStationList) {
-            neighborStation.setStation(currentStation);
-        }
+        List<NeighborStation> neighborStationList = session.selectList("NeighborStationMapping.getListByStationId", stationId);
         session.commit();
         session.close();
         return neighborStationList;

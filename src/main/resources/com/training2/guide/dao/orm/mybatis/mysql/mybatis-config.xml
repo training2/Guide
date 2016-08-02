@@ -34,13 +34,13 @@
     </environment>
 </environments>
 <mappers>
-    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/CityMapper.xml"/>
-    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/PassangerMapper.xml"/>
-    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/PassangerPathMapper.xml"/>
-    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/RouteMapper.xml"/>
-    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/StationMapper.xml"/>
-    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/TransportMapper.xml"/>
-    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/RouteMapper.xml"/>
-    <mapper resource="com/training2/guide/dao/orm/mybatis/mappers/NeighborStationMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mysql/mappers/CityMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mysql/mappers/PassangerMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mysql/mappers/PassangerPathMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mysql/mappers/RouteMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mysql/mappers/StationMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mysql/mappers/TransportMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mysql/mappers/RouteMapper.xml"/>
+    <mapper resource="com/training2/guide/dao/orm/mybatis/mysql/mappers/NeighborStationMapper.xml"/>
 </mappers>
 </configuration>

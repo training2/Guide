@@ -1,5 +1,7 @@
 package com.training2.guide.dao;
 
+import com.training2.guide.dao.jdbc.mysql.JDBCFactory;
+import com.training2.guide.dao.orm.mybatis.mysql.MybatisFactory;
 import com.training2.guide.models.*;
 
 public abstract class DaoFactory {

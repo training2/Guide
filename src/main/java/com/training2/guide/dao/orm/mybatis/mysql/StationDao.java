@@ -1,4 +1,4 @@
-package com.training2.guide.dao.orm.mybatis;
+package com.training2.guide.dao.orm.mybatis.mysql;
 
 import com.training2.guide.dao.IStationDao;
 import com.training2.guide.models.Station;

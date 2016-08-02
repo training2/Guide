@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RouteMapping">
+
+    <sql id="getByStation">
+        <![CDATA[
+          select s.id as stationId, s.street, c. id as cityId, c.cityName, s1.id as stationFromId, s1.street as streetFrom,
+                c1.id as cityFromId, c1.cityName as cityFromName, r.distance from stations s
+                inner join cities c on (s.city_id = c.id)
+                inner join route r on (s.id = r.station_to)
+                inner join stations s1 on (s1.id = r.station_from)
+                inner join cities c1 on (s1.city_id = c1.id)
+        ]]>
+    </sql>
+
+    <select id="getByStationId" parameterType="Route" resultMap="NeighborStationMapping.listNeighborStationsMap">
+        <include refid="getByStation"/>
+         where (r.station_from = #{id})
+    </select>
+
+</mapper>

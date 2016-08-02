@@ -1,6 +1,6 @@
-package com.training2.guide.dao;
+package com.training2.guide.dao.jdbc.mysql;
 
-import com.training2.guide.dao.jdbc.mysql.*;
+import com.training2.guide.dao.*;
 import com.training2.guide.models.*;
 
 public class JDBCFactory extends DaoFactory {

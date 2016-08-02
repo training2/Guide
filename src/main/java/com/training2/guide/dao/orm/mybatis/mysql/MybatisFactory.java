@@ -1,6 +1,6 @@
-package com.training2.guide.dao;
+package com.training2.guide.dao.orm.mybatis.mysql;
 
-import com.training2.guide.dao.orm.mybatis.*;
+import com.training2.guide.dao.*;
 import com.training2.guide.models.*;
 
 public class MybatisFactory extends DaoFactory {

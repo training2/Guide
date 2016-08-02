@@ -1,4 +1,4 @@
-package com.training2.guide.dao.orm.mybatis;
+package com.training2.guide.dao.orm.mybatis.mysql;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 public class SessionFactory {
 
-    private static final String mybatisResource = "com/training2/guide/dao/orm/mybatis/mybatis-config.xml";
+    private static final String mybatisResource = "com/training2/guide/dao/orm/mybatis/mysql/mybatis-config.xml";
     private static SqlSessionFactory sessionFactory = null;
     private static InputStream inputStream;
     private SqlSession session;

@@ -1,11 +1,7 @@
-package com.training2.guide.dao.orm.mybatis;
+package com.training2.guide.dao.orm.mybatis.mysql;
 
-import com.training2.guide.dao.IPassangerDao;
 import com.training2.guide.dao.IPassangerPathDao;
-import com.training2.guide.dao.IStationDao;
-import com.training2.guide.models.Passanger;
 import com.training2.guide.models.PassangerPath;
-import com.training2.guide.models.Station;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.HashMap;
@@ -14,21 +10,11 @@ import java.util.Map;
 
 public class PassangerPathDao implements IPassangerPathDao<PassangerPath, Integer> {
 
-    private IPassangerDao<Passanger, Integer> passangerDao;
-    private IStationDao<Station, Integer> stationDao;
-
     @Override
     public List<PassangerPath> getAll() {
         List<PassangerPath> passangerPathList;
-        passangerDao = new PassangerDao();
-        stationDao = new StationDao();
         SqlSession session = SessionFactory.getSession();
         passangerPathList = session.selectList("PassangerPathMapping.getAll");
-        for(PassangerPath path: passangerPathList) {
-            path.setPassanger(passangerDao.getByStationId(path.getPassanger().getId()));
-            path.setStationFrom(stationDao.getByStationId(path.getStationFrom().getId()));
-            path.setStationTo(stationDao.getByStationId(path.getStationTo().getId()));
-        }
         session.commit();
         session.close();
         return passangerPathList;

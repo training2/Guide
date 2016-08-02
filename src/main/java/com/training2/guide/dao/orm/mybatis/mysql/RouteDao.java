@@ -1,23 +1,14 @@
-package com.training2.guide.dao.orm.mybatis;
+package com.training2.guide.dao.orm.mybatis.mysql;
 
-import com.training2.guide.dao.INeighborStationDao;
 import com.training2.guide.dao.IRouteDao;
-import com.training2.guide.dao.IStationDao;
-import com.training2.guide.models.NeighborStation;
 import com.training2.guide.models.Route;
-import com.training2.guide.models.Station;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
 public class RouteDao implements IRouteDao<Route, Integer> {
 
-    private IStationDao<Station, Integer> dao;
-    private INeighborStationDao<NeighborStation, Integer> neighborStationDao;
-
     public RouteDao() {
-        this.dao = new StationDao();
-        this.neighborStationDao = new NeighborStationDao();
     }
 
     @Override
@@ -44,8 +35,8 @@ public class RouteDao implements IRouteDao<Route, Integer> {
     public Route getByStationId(Integer id) {
         Route route = new Route();
         SqlSession session = SessionFactory.getSession();
-        route.setStation(dao.getByStationId(id));
-        route.setNeighborStationList(neighborStationDao.getListByStationId(id));
+        route.setNeighborStationList(session.selectList("RouteMapping.getByStationId", id));
+        route.setStation(route.getNeighborStationList().get(0).getStation());
         session.commit();
         session.close();
         return route;
