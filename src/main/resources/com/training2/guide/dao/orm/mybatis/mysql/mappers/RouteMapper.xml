@@ -6,18 +6,39 @@
 
     <sql id="getByStation">
         <![CDATA[
-          select s.id as stationId, s.street, c. id as cityId, c.cityName, s1.id as stationFromId, s1.street as streetFrom,
-                c1.id as cityFromId, c1.cityName as cityFromName, r.distance from stations s
+          select s.id as stationId, s.street, c. id as cityId, c.cityName,
+                s1.id as stationToId, s1.street as streetTo,
+                c1.id as cityToId, c1.cityName as cityToName, r.distance
+                from stations s
                 inner join cities c on (s.city_id = c.id)
-                inner join route r on (s.id = r.station_to)
-                inner join stations s1 on (s1.id = r.station_from)
+                inner join route r on (s.id = r.station_from)
+                inner join stations s1 on (s1.id = r.station_to)
                 inner join cities c1 on (s1.city_id = c1.id)
         ]]>
     </sql>
 
-    <select id="getByStationId" parameterType="Route" resultMap="NeighborStationMapping.listNeighborStationsMap">
+    <select id="getByStationId" resultMap="routeMap">
         <include refid="getByStation"/>
          where (r.station_from = #{id})
     </select>
 
+    <resultMap id="routeMap" type="NeighborStation" autoMapping="false">
+        <result property="distance" column="distance" javaType="java.lang.Integer"/>
+        <association property="neighborStation" javaType="Station">
+            <id property="id" column="stationToId"/>
+            <result property="street" column="streetTo"/>
+            <association property="city" javaType="City">
+                <id property="id" column="cityToId"/>
+                <result property="cityName" column="cityToName"/>
+            </association>
+        </association>
+        <association property="station" javaType="Station">
+            <id property="id" column="stationId"/>
+            <result property="street" column="street"/>
+            <association property="city" javaType="City">
+                <id property="id" column="cityId"/>
+                <result property="cityName" column="cityName"/>
+            </association>
+        </association>
+    </resultMap>
 </mapper>
