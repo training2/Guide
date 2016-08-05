@@ -8,12 +8,7 @@ import java.io.InputStream;
 
 public class MainClass {
 
-    public static final String LOG_FILE_NAME = "src/main/resources/log4j.xml";
-
     public static void main(String[] args) {
-
-        InputStream inputStream = MainClass.class.getClassLoader().getResourceAsStream(LOG_FILE_NAME);
-        PropertyConfigurator.configure(LOG_FILE_NAME);
 
         //InitDB.init();
 
