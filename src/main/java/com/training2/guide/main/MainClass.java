@@ -2,8 +2,9 @@ package com.training2.guide.main;
 
 import com.training2.guide.algorithm.guide.OrderExecuter;
 import com.training2.guide.dao.DaoFactory;
-import com.training2.guide.util.InitDB;
 import org.apache.log4j.PropertyConfigurator;
+
+import java.io.InputStream;
 
 public class MainClass {
 
@@ -11,6 +12,7 @@ public class MainClass {
 
     public static void main(String[] args) {
 
+        InputStream inputStream = MainClass.class.getClassLoader().getResourceAsStream(LOG_FILE_NAME);
         PropertyConfigurator.configure(LOG_FILE_NAME);
 
         //InitDB.init();

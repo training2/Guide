@@ -22,12 +22,12 @@ public class GuideProperties {
     private static InputStream inputStream = null;
     private static Properties properties = new Properties();
 
-    private static String PROPERTIES_FILE_NAME = "src/main/resources/com/training2/guide/config.properties";
+    private static String PROPERTIES_FILE_NAME = "/config.properties";
 
     public static String getParameter(String parameterName){
         String parameter="";
         try {
-            inputStream = GuideProperties.class.getClassLoader().getResourceAsStream("/config.properties");
+            inputStream = GuideProperties.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
             properties.load(inputStream);
             parameter = properties.getProperty(parameterName);
         } catch (IOException e) {
