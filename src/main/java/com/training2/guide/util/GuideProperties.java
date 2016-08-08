@@ -22,7 +22,7 @@ public class GuideProperties {
     private static InputStream inputStream = null;
     private static Properties properties = new Properties();
 
-    private static String PROPERTIES_FILE_NAME = "/config.properties";
+    private static String PROPERTIES_FILE_NAME = "com/training2/guide/config.properties";
 
     public static String getParameter(String parameterName){
         String parameter="";

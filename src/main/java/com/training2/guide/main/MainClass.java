@@ -10,9 +10,11 @@ public class MainClass {
 
     public static void main(String[] args) {
 
+        String argument = args[0];
+
         //InitDB.init();
 
-        DaoFactory.initTypeOfDaoFactory(DaoFactory.MYBATIS);
+        DaoFactory.initTypeOfDaoFactory(argument/*DaoFactory.MYBATIS*/);
         OrderExecuter executer = new OrderExecuter();
         executer.executeAll();
     }
